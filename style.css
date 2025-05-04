@@ -18,7 +18,9 @@ body {
     min-width: 320px;
     max-width: 90vw;
     text-align: center;
-    transition: none;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 h1 {
@@ -128,6 +130,11 @@ h1 {
 .card.minimized {
     transform: scale(0.5);
     opacity: 0;
+    pointer-events: none;
+}
+
+.card.hidden {
+    display: none;
 }
 
 @media (max-width: 500px) {
