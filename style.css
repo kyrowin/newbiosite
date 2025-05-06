@@ -41,9 +41,16 @@ h1 {
 }
 
 .desc {
-    font-size: 1.15rem;
-    margin-bottom: 2em;
-    color: #dfe6e9;
+    position: relative;
+    min-height: 1.5em;
+}
+.desc::after {
+    content: 'Live in Russia. Love computers <3';
+    visibility: hidden;
+    pointer-events: none;
+    display: block;
+    height: 0;
+    overflow: hidden;
 }
 
 .links {
@@ -135,6 +142,26 @@ h1 {
 
 .card.hidden {
     display: none;
+}
+
+#fillCubeBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+#fillCubeBtn:hover {
+    background: #444;
+    transform: scale(1.05);
 }
 
 @media (max-width: 500px) {
