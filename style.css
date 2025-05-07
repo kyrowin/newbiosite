@@ -8,30 +8,40 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .card {
     background: #232526;
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.25);
-    padding: 40px 32px;
+    padding: 10px 20px 25px 20px;
     min-width: 320px;
     max-width: 90vw;
     text-align: center;
     opacity: 1;
     transform: scale(1);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 2000;
+    transform: translate(-50%, -50%);
 }
 
 h1 {
     font-size: 2.2rem;
     font-weight: 700;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.2em;
+    line-height: 1.05;
 }
 
 .nick {
     color: #6c63ff;
     font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 0.2em;
+    line-height: 1.1;
 }
 
 .age {
@@ -105,33 +115,92 @@ h1 {
 
 .taskbar {
     position: fixed;
-    bottom: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
-    background: rgba(40, 40, 40, 0.9);
-    padding: 8px;
+    height: 48px;
+    background: linear-gradient(0deg, #23272e 90%, #2c313a 100%);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.18);
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 0 10px;
     z-index: 1000;
 }
 
-.taskbar-btn {
-    background: rgba(255, 255, 255, 0.1);
+.win-btn {
+    background: rgba(255,255,255,0.10);
     border: none;
-    color: #f5f6fa;
-    padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 6px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
     cursor: pointer;
-    transition: background 0.2s, opacity 0.3s ease;
+    transition: background 0.2s;
+    padding: 0;
 }
 
-.taskbar-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+.win-btn svg {
+    display: block;
 }
 
-.taskbar-btn.hidden {
-    opacity: 0;
-    pointer-events: none;
+.app-btn {
+    background: rgba(255,255,255,0.10);
+    border: none;
+    border-radius: 6px;
+    color: #f5f6fa;
+    padding: 0 18px 0 8px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-family: inherit;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    outline: none;
+    margin-right: 6px;
+}
+
+.app-btn:hover, .app-btn:focus, .app-btn:active {
+    background: #6c63ff;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(108,99,255,0.15);
+}
+
+.taskbar-spacer {
+    flex: 1 1 auto;
+}
+
+#taskbar-clock {
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1.08rem;
+    letter-spacing: 0.02em;
+    padding: 0 16px;
+    user-select: none;
+    text-align: center;
+    min-width: 70px;
+    height: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#taskbar-clock-time {
+    font-size: 1.18rem;
+    font-weight: 600;
+}
+
+#taskbar-clock-date {
+    font-size: 0.98rem;
+    font-weight: 400;
+    margin-top: -2px;
 }
 
 .card.minimized {
@@ -140,28 +209,38 @@ h1 {
     pointer-events: none;
 }
 
-.card.hidden {
+f.hidden {
     display: none;
 }
 
 #fillCubeBtn {
     display: none;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background: #333;
-    color: white;
+    right: 24px;
+    top: 24px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    padding: 10px 28px;
+    background: #23272e;
+    color: #f5f6fa;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 1.08rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.12);
     cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 1000;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+    z-index: 1100;
+    text-align: center;
+    white-space: nowrap;
 }
 
 #fillCubeBtn:hover {
-    background: #444;
-    transform: scale(1.05);
+    background: #6c63ff;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(108,99,255,0.18);
+    transform: translateY(-2px) scale(1.04);
 }
 
 @media (max-width: 500px) {
@@ -175,4 +254,57 @@ h1 {
     .desc {
         font-size: 1rem;
     }
+}
+
+@media (max-width: 600px) {
+    .card {
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        padding: 7px 12px;
+        min-width: 320px;
+        max-width: 95vw;
+        border-radius: 14px;
+    }
+}
+
+.window-header {
+    width: 100%;
+    height: 40px;
+    cursor: move;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.window-title {
+    position: absolute;
+    margin-top: 7px;
+    left: 10px;
+    top: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 500;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
 } 

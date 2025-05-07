@@ -8,11 +8,14 @@
 </head>
 <body>
     <main class="card" style="opacity: 0;">
-        <div class="window-controls">
-            <button class="minimize-btn">_</button>
-            <button class="close-btn">×</button>
+        <div class="window-header">
+            <span class="window-title">Biography</span>
+            <div class="window-controls">
+                <button class="minimize-btn">_</button>
+                <button class="close-btn">×</button>
+            </div>
         </div>
-        <h1>Kyrowin <span class="nick">(aka Arseniy)</span></h1>
+        <h1>Kyrowin<div class="nick">(aka Arseniy)</div></h1>
         <p class="age">13 y.o.</p>
         <p class="desc">Live in Russia. Love computers &lt;3</p>
         <div class="links">
@@ -21,9 +24,12 @@
         </div>
     </main>
     <div class="taskbar">
-        <button class="taskbar-btn" style="display: none;">Bio (Minimized)</button>
+        <button class="win-btn" disabled><svg width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="9" height="9" fill="#fff"/><rect x="11" y="0" width="9" height="9" fill="#fff"/><rect x="0" y="11" width="9" height="9" fill="#fff"/><rect x="11" y="11" width="9" height="9" fill="#fff"/></svg></button>
+        <button class="app-btn"><img src="info.ico" alt="" style="width:22px;height:22px;vertical-align:middle;margin-right:4px;">Biography</button>
+        <span class="taskbar-spacer"></span>
+        <span id="taskbar-clock"></span>
     </div>
-    <button id="fillCubeBtn" style="display: none; position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">Заполнить куб</button>
+    <button id="fillCubeBtn" style="display: none;">Заполнить куб</button>
     <script src="script.js"></script>
 </body>
 </html>
