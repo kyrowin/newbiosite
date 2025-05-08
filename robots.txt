@@ -1,0 +1,9 @@
+User-Agent: Yandex
+Disallow: /CNAME
+Disallow: /README.md
+
+User-Agent: Googlebot
+Disallow: /CNAME
+Disallow: /README.md
+
+Sitemap: https://kyrowinomg.ru/sitemap.xml
