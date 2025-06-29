@@ -12,3 +12,4 @@ run it locally, open index.html and enjoy (or not, i don't care) (¬_¬)
 もしもし (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
 ps: if you break something, it's your own damn fault (╬ಠ益ಠ) 
+ps2: if you forking my site, you should not pass it off as your own
