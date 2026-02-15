@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>Kyrowin / Bio</title>
-    <link rel="stylesheet" href="https://kyrowinomg.ru/style.css">
-    <link rel="icon" type="image/x-icon" href="https://kyrowinomg.ru/images/favicon.ico?">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <meta name="keywords" content="kyrowin, kyrowin.ru, kyrowinomg, omgkyrowin, kyrowinomg.ru, куровин, сайт куровина, кто такой куровин, кто такой kyrowin, кто такой omgkyrowin">
-    <meta name="description" content="Bio site of Kyrowin. Developer from Russia.">
+    <meta name="keywords" content="kyrowin, kyrowinomg, куровин, разработчик, @kyrowin, @kyrowinomg, kyrowinomg.ru">
+    <meta name="description" content="bio site of kyrowin - python developer">
     <meta name="author" content="Kyrowin">
-    <meta property="og:title" content="Kyrowin / Bio">
-    <meta property="og:description" content="Bio site of Kyrowin. Developer from Russia.">
+    <meta property="og:title" content="Kyrowin">
+    <meta property="og:description" content="13 y.o. developer from Russia specializing in python (aiogram)">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kyrowinomg.ru">
     <meta property="og:image" content="https://kyrowinomg.ru/images/preview.png">
@@ -20,41 +20,92 @@
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Kyrowin">
     <meta property="og:locale" content="ru_RU">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@kyrowin">
-    <meta name="twitter:title" content="Kyrowin / Bio">
-    <meta name="twitter:description" content="Bio site of Kyrowin. Developer from Russia.">
+    <meta name="twitter:title" content="Kyrowin">
+    <meta name="twitter:description" content="13 y.o. developer">
     <meta name="twitter:image" content="https://kyrowinomg.ru/images/preview2.png">
     <meta name="twitter:image:alt" content="Kyrowin / Bio">
-
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#8338ec">
     <meta name="robots" content="index, follow">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:creator" content="@kyrowin">
+    <link rel="canonical" href="https://kyrowinomg.ru/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <main class="card" style="opacity: 0;">
-        <div class="window-header">
-            <span class="window-title">Biography</span>
-            <div class="window-controls">
-                <button class="minimize-btn">_</button>
-                <button class="close-btn">×</button>
+    <canvas id="bg-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <div class="cyber-card">
+        <div class="card-header">
+            <div class="header-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+            </div>
+            <span class="header-title">kyrowinomg.ru</span>
+        </div>
+        <div class="card-content">
+            <h1 class="cyber-title glitch" data-text="KYROWIN">kyrowin</h1>
+            <p class="cyber-subtitle">
+                <span class="bracket">[</span><span class="typed-text"></span><span class="bracket">]</span>
+            </p>
+            <div class="info-tags">
+                <span class="tag"><i class="fas fa-birthday-cake"></i> 13 y.o.</span>
+                <span class="tag"><i class="fas fa-map-marker-alt"></i> Russia</span>
+            </div>
+            <div class="about-section">
+                <h2 class="section-title">
+                    <span class="prompt">$</span> cat about.txt
+                </h2>
+                <p class="about-text">Young developer (yea its me). Started building projects at age 11. Love computers and devopsing.</p>
+            </div>
+            <div class="skills-section">
+                <h2 class="section-title">
+                    <span class="prompt">$</span> ls skills/
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-robot"></i>
+                        <span>Aiogram</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-js"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-git-alt"></i>
+                        <span>Git</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-section">
+                <a href="https://t.me/kyrowin" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+                <a href="https://github.com/kyrowin" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
             </div>
         </div>
-        <h1>Kyrowin<div class="nick">(aka Arseniy)</div></h1>
-        <p class="age">13 y.o.</p>
-        <p class="desc">Live in Russia. Love computers &lt;3</p>
-        <div class="links">
-            <a href="https://t.me/kyrowin" target="_blank" class="link tg">Telegram</a>
-            <a href="https://github.com/kyrowin" target="_blank" class="link gh">GitHub</a>
-        </div>
-    </main>
-    <div class="taskbar">
-        <button class="win-btn" disabled><svg width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="9" height="9" fill="#fff"/><rect x="11" y="0" width="9" height="9" fill="#fff"/><rect x="0" y="11" width="9" height="9" fill="#fff"/><rect x="11" y="11" width="9" height="9" fill="#fff"/></svg></button>
-        <button class="app-btn"><img src="/images/info.ico" alt="" style="width:22px;height:22px;vertical-align:middle;margin-right:4px;">Biography</button>
-        <span class="taskbar-spacer"></span>
-        <span id="taskbar-clock"></span>
     </div>
-    <button id="fillCubeBtn" style="display: none;">Заполнить куб</button>
     <script src="script.js"></script>
 </body>
 </html>
