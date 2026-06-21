@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>Kyrowin / Bio</title>
-    <link rel="stylesheet" href="https://kyrowinomg.ru/style.css">
-    <link rel="icon" type="image/x-icon" href="https://kyrowinomg.ru/images/favicon.ico?">
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <meta name="keywords" content="kyrowin, kyrowin.ru, kyrowinomg, omgkyrowin, kyrowinomg.ru, куровин, сайт куровина, кто такой куровин, кто такой kyrowin, кто такой omgkyrowin">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <meta name="keywords" content="kyrowin, kyrowin.ru, kyrowinomg, omgkyrowin, kyrowinomg.ru">
     <meta name="description" content="Bio site of Kyrowin. Developer from Russia.">
     <meta name="author" content="Kyrowin">
     <meta property="og:title" content="Kyrowin / Bio">
@@ -19,42 +18,366 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Kyrowin">
-    <meta property="og:locale" content="ru_RU">
-
+    <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@kyrowin">
     <meta name="twitter:title" content="Kyrowin / Bio">
     <meta name="twitter:description" content="Bio site of Kyrowin. Developer from Russia.">
     <meta name="twitter:image" content="https://kyrowinomg.ru/images/preview2.png">
     <meta name="twitter:image:alt" content="Kyrowin / Bio">
-
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#245edb">
     <meta name="robots" content="index, follow">
 </head>
 <body>
-    <main class="card" style="opacity: 0;">
-        <div class="window-header">
-            <span class="window-title">Biography</span>
-            <div class="window-controls">
-                <button class="minimize-btn">_</button>
-                <button class="close-btn">×</button>
+    <!-- ===== BIOS POST SCREEN ===== -->
+    <div id="bios-screen" class="bios-screen">
+        <div class="bios-head">
+            <span class="bios-energy">ENERGY<br>STAR</span>
+            <div class="bios-head-text">
+                <p>Award Modular BIOS v6.00PG, An Energy Star Ally</p>
+                <p>Copyright (C) 1984-2003, Award Software, Inc.</p>
             </div>
         </div>
-        <h1>Kyrowin<div class="nick">(aka Arseniy)</div></h1>
-        <p class="age">14 y.o.</p>
-        <p class="desc">Live in Russia. Love computers &lt;3</p>
-        <div class="links">
-            <a href="https://t.me/kyrowin" target="_blank" class="link tg">Telegram</a>
-            <a href="https://github.com/kyrowin" target="_blank" class="link gh">GitHub</a>
-        </div>
-    </main>
-    <div class="taskbar">
-        <button class="win-btn" disabled><svg width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="9" height="9" fill="#fff"/><rect x="11" y="0" width="9" height="9" fill="#fff"/><rect x="0" y="11" width="9" height="9" fill="#fff"/><rect x="11" y="11" width="9" height="9" fill="#fff"/></svg></button>
-        <button class="app-btn"><img src="/images/info.ico" alt="" style="width:22px;height:22px;vertical-align:middle;margin-right:4px;">Biography</button>
-        <span class="taskbar-spacer"></span>
-        <span id="taskbar-clock"></span>
+        <p class="bios-line">ASUS P4S800-MX ACPI BIOS Revision 1008</p>
+        <p class="bios-line">Copyright (C) 2003, ASUSTeK COMPUTER INC.</p>
+        <p class="bios-gap"></p>
+        <p class="bios-line">Main Processor : Intel(R) Pentium(R) 4 CPU 2.40GHz</p>
+        <p class="bios-line" id="bios-mem">Memory Testing : 524288K OK</p>
+        <p class="bios-gap"></p>
+        <p class="bios-line">IDE Channel 0 Master : WDC WD400BB-00JHC0</p>
+        <p class="bios-line">IDE Channel 0 Slave  : None</p>
+        <p class="bios-line">IDE Channel 1 Master : ASUS DVD-E616A3</p>
+        <p class="bios-line">IDE Channel 1 Slave  : None</p>
+        <p class="bios-gap"></p>
+        <p class="bios-line">Verifying DMI Pool Data <span class="bios-cursor"></span></p>
+        <div class="bios-bottom">Press DEL to enter SETUP, F8 for BBS POPUP</div>
+        <div class="bios-brand">12/22/2003-SiS-651-6A6IXXXXC-00</div>
     </div>
-    <button id="fillCubeBtn" style="display: none;">Заполнить куб</button>
+
+    <!-- ===== BOOT SCREEN ===== -->
+    <div id="boot-screen" class="boot-screen hidden">
+        <div class="boot-center">
+            <img src="images/xp_loading_logo.jpg" alt="Microsoft Windows XP" class="boot-logo-img">
+            <div class="boot-progress">
+                <div class="boot-progress-track">
+                    <div class="boot-progress-blocks"></div>
+                </div>
+            </div>
+        </div>
+        <div class="boot-copyright">Copyright &copy; Microsoft Corporation</div>
+        <div class="boot-brand">Microsoft</div>
+    </div>
+
+    <!-- ===== LOGIN / WELCOME SCREEN ===== -->
+    <div id="login-screen" class="login-screen hidden">
+        <div class="login-bar login-bar-top"></div>
+        <div class="login-main">
+            <div class="login-left">
+                <div class="login-brand">
+                    <img src="images/logo.png" alt="" class="login-flag">
+                    <div class="login-wordmark">
+                        <span class="login-ms">Microsoft<sup>&reg;</sup></span>
+                        <span class="login-win">Windows<span class="login-xp">xp</span></span>
+                    </div>
+                </div>
+                <p class="login-prompt">To begin, click your user name</p>
+            </div>
+            <div class="login-divider"></div>
+            <div class="login-right">
+                <button class="user-tile" id="login-btn">
+                    <span class="user-avatar"><img src="images/avatar.png" alt="Kyrowin"></span>
+                    <span class="user-meta">
+                        <span class="user-name">Kyrowin</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="login-bar login-bar-bottom">
+            <button class="turnoff-link" id="turn-off-btn">
+                <img class="xpi s24" src="images/xpicons/Power.png" alt="">
+                <span>Turn off computer</span>
+            </button>
+            <p class="login-hint">After you log on, this is just a bio site.<br>Click Kyrowin to continue.</p>
+        </div>
+    </div>
+
+    <!-- ===== WELCOME SCREEN ===== -->
+    <div id="welcome-screen" class="welcome-screen hidden">
+        <div class="welcome-bar welcome-bar-top"></div>
+        <div class="welcome-center">
+            <span class="welcome-avatar"><img src="images/avatar.png" alt="Kyrowin"></span>
+            <span class="welcome-text">welcome</span>
+        </div>
+        <div class="welcome-bar welcome-bar-bottom"></div>
+    </div>
+
+    <!-- ===== SHUTDOWN: "Windows is shutting down" ===== -->
+    <div id="shutdown-progress" class="shutdown-progress hidden">
+        <div class="shutdown-center">
+            <img src="images/xp_loading_logo.jpg" alt="Microsoft Windows XP" class="boot-logo-img">
+            <p class="shutdown-status">Windows is shutting down...</p>
+        </div>
+    </div>
+
+    <!-- ===== SHUTDOWN SCREEN (safe to turn off) ===== -->
+    <div id="shutdown-screen" class="shutdown-screen hidden">
+        <div class="shutdown-inner">
+            <p class="shutdown-main">It is now safe to turn off<br>your computer.</p>
+            <button class="shutdown-restart" id="restart-btn">Click to restart</button>
+        </div>
+    </div>
+
+    <!-- ===== DESKTOP ===== -->
+    <div id="desktop" class="desktop hidden">
+        <div class="desktop-icons">
+            <button class="desktop-icon" data-action="open-bio" data-tip="Open my biography">
+                <img class="xpi" src="images/xpicons/Default.png" alt="">
+                <span class="di-label">Biography</span>
+            </button>
+            <button class="desktop-icon" data-action="my-computer" data-tip="Shows the drives and hardware on this computer">
+                <img class="xpi" src="images/xpicons/MyComputer.png" alt="">
+                <span class="di-label">My Computer</span>
+            </button>
+            <button class="desktop-icon" data-action="open-gh" data-tip="Visit my GitHub profile">
+                <span class="di-svg" aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="#f0f0f0"/><path d="M16 4C9.4 4 4 9.4 4 16c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0C20 8.6 21 8.9 21 8.9c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 28 16c0-6.6-5.4-12-12-12z" fill="#1b1f23"/></svg>
+                </span>
+                <span class="di-label">GitHub</span>
+            </button>
+            <button class="desktop-icon" data-action="recycle" data-tip="Contains the files and folders that you have deleted">
+                <img class="xpi" src="images/xpicons/RecycleBinempty.png" alt="">
+                <span class="di-label">Recycle Bin</span>
+            </button>
+        </div>
+
+        <main class="card" id="bio-window">
+            <div class="window-header">
+                <div class="window-titlebar">
+                    <img class="window-icon xpi s16" src="images/xpicons/Default.png" alt="">
+                    <span class="window-title">Biography</span>
+                </div>
+                <div class="window-controls">
+                    <button class="win-ctrl minimize-btn" title="Minimize" aria-label="Minimize">
+                        <span class="ctrl-glyph min-glyph"></span>
+                    </button>
+                    <button class="win-ctrl maximize-btn" title="Maximize" aria-label="Maximize">
+                        <span class="ctrl-glyph max-glyph"></span>
+                        <span class="ctrl-glyph restore-glyph" hidden></span>
+                    </button>
+                    <button class="win-ctrl close-btn" title="Close" aria-label="Close">
+                        <span class="ctrl-glyph close-glyph">&#10005;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h1>Kyrowin<span class="nick">(aka Arseniy)</span></h1>
+                <p class="age">14 y.o.</p>
+                <p class="desc">Live in Russia. Love computers &lt;3</p>
+                <div class="links">
+                    <a href="https://t.me/kyrowin" target="_blank" rel="noopener" class="link tg">
+                        <span class="link-ico" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#2aabee"/><path d="M5.5 11.8 17 7.3c.5-.2 1 .1.8.9l-2 9.2c-.1.6-.5.7-1 .4l-2.8-2-1.3 1.3c-.2.2-.3.3-.6.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1l-6.6 4.1-2.8-.9c-.6-.2-.6-.6.1-.9z" fill="#fff"/></svg>
+                        </span>
+                        Telegram
+                    </a>
+                    <a href="https://github.com/kyrowin" target="_blank" rel="noopener" class="link gh">
+                        <span class="link-ico" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9 9 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10 10 0 0 0 22 12.3C22 6.6 17.5 2 12 2z" fill="#1b1f23"/></svg>
+                        </span>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ===== TASKBAR ===== -->
+    <div class="taskbar hidden" id="taskbar">
+        <button class="start-btn" id="start-btn" aria-label="Start" data-tip="Click here to begin.">
+            <img src="images/logo.png" alt="" class="start-flag">
+            <span class="start-text">start</span>
+        </button>
+        <div class="taskbar-apps">
+            <button class="app-btn active" id="app-btn" data-tip="Biography">
+                <img class="xpi s16" src="images/xpicons/Default.png" alt="">
+                <span>Biography</span>
+            </button>
+        </div>
+        <span class="taskbar-spacer"></span>
+        <div class="tray" id="tray">
+            <span class="tray-lang">EN</span>
+            <button class="tray-icon" id="network-btn" data-tip="Local Area Connection&#10;Speed: 100.0 Mbps&#10;Status: Connected"><img class="xpi s16" src="images/xpicons/NetworkConnection.png" alt=""></button>
+            <button class="tray-icon" id="volume-btn" data-tip="Volume"><img class="xpi s16" src="images/xpicons/Volume.png" alt=""></button>
+            <span id="taskbar-clock" class="tray-clock"></span>
+        </div>
+    </div>
+
+    <!-- ===== START MENU ===== -->
+    <div class="start-menu hidden" id="start-menu">
+        <div class="start-menu-header">
+            <span class="start-menu-avatar"><img src="images/avatar.png" alt="Kyrowin"></span>
+            <span class="start-menu-user">Kyrowin</span>
+        </div>
+        <div class="start-menu-body">
+            <div class="start-menu-left">
+                <button class="start-item pinned" data-action="open-bio">
+                    <img class="xpi" src="images/xpicons/Default.png" alt="">
+                    <span class="it-text"><span class="it-name">Biography</span><span class="it-sub">About me</span></span>
+                </button>
+                <button class="start-item pinned" data-action="open-tg">
+                    <span class="link-ico-lg" aria-hidden="true">
+                        <svg width="30" height="30" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#2aabee"/><path d="M5.5 11.8 17 7.3c.5-.2 1 .1.8.9l-2 9.2c-.1.6-.5.7-1 .4l-2.8-2-1.3 1.3c-.2.2-.3.3-.6.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1l-6.6 4.1-2.8-.9c-.6-.2-.6-.6.1-.9z" fill="#fff"/></svg>
+                    </span>
+                    <span class="it-text"><span class="it-name">Telegram</span><span class="it-sub">@kyrowin</span></span>
+                </button>
+                <div class="start-divider"></div>
+                <button class="start-item" data-action="open-gh">
+                    <span class="link-ico-md" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9 9 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10 10 0 0 0 22 12.3C22 6.6 17.5 2 12 2z" fill="#1b1f23"/></svg>
+                    </span>
+                    <span class="it-name">GitHub</span>
+                </button>
+                <button class="start-item" data-action="email">
+                    <img class="xpi s24" src="images/xpicons/Email.png" alt="">
+                    <span class="it-name">E-mail</span>
+                </button>
+                <button class="start-item" data-action="media">
+                    <img class="xpi s24" src="images/xpicons/WindowsMediaPlayer9.png" alt="">
+                    <span class="it-name">Windows Media Player</span>
+                </button>
+                <button class="start-item" data-action="messenger">
+                    <img class="xpi s24" src="images/xpicons/WindowsMessenger.png" alt="">
+                    <span class="it-name">Messenger</span>
+                </button>
+                <div class="start-all-wrap">
+                    <button class="start-all" data-action="all-programs">
+                        <span class="all-text">All Programs</span>
+                        <span class="all-arrow"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="start-menu-right">
+                <button class="sm-right-item bold" data-action="documents">
+                    <img class="xpi s24" src="images/xpicons/FolderClosed.png" alt=""><span>My Documents</span>
+                </button>
+                <button class="sm-right-item bold" data-action="recent">
+                    <img class="xpi s24" src="images/xpicons/Default.png" alt=""><span>My Recent Documents</span>
+                </button>
+                <button class="sm-right-item bold" data-action="pictures">
+                    <img class="xpi s24" src="images/xpicons/MyPictures.png" alt=""><span>My Pictures</span>
+                </button>
+                <button class="sm-right-item bold" data-action="music">
+                    <img class="xpi s24" src="images/xpicons/MyMusic.png" alt=""><span>My Music</span>
+                </button>
+                <button class="sm-right-item bold" data-action="my-computer">
+                    <img class="xpi s24" src="images/xpicons/MyComputer.png" alt=""><span>My Computer</span>
+                </button>
+                <div class="start-divider-right"></div>
+                <button class="sm-right-item" data-action="control-panel">
+                    <img class="xpi s24" src="images/xpicons/ControlPanel.png" alt=""><span>Control Panel</span>
+                </button>
+                <button class="sm-right-item" data-action="help">
+                    <img class="xpi s24" src="images/xpicons/HelpandSupport.png" alt=""><span>Help and Support</span>
+                </button>
+                <button class="sm-right-item" data-action="search">
+                    <img class="xpi s24" src="images/xpicons/Search.png" alt=""><span>Search</span>
+                </button>
+                <button class="sm-right-item" data-action="run">
+                    <img class="xpi s24" src="images/xpicons/Run.png" alt=""><span>Run...</span>
+                </button>
+            </div>
+        </div>
+        <div class="start-menu-footer">
+            <button class="start-footer-btn" data-action="logoff">
+                <img class="xpi s24" src="images/xpicons/Logout.png" alt="">
+                <span>Log Off</span>
+            </button>
+            <button class="start-footer-btn" data-action="shutdown">
+                <img class="xpi s24" src="images/xpicons/Power.png" alt="">
+                <span>Turn Off Computer</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== TRAY FLYOUTS ===== -->
+    <div class="volume-applet hidden" id="volume-flyout">
+        <div class="va-title">Volume</div>
+        <div class="va-section">
+            <div class="va-label">Balance:</div>
+            <div class="va-balance-row">
+                <span class="va-spk va-spk-l" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16"><polygon points="2,5 5,5 9,2 9,14 5,11 2,11" fill="#1a3d6b"/><path d="M11,6 Q13,8 11,10" fill="none" stroke="#1a3d6b" stroke-width="1.3"/></svg>
+                </span>
+                <input type="range" id="balance-slider" min="-100" max="100" value="0" class="va-h-slider">
+                <span class="va-spk va-spk-r" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16"><polygon points="2,5 5,5 9,2 9,14 5,11 2,11" fill="#1a3d6b"/><path d="M11,6 Q13,8 11,10" fill="none" stroke="#1a3d6b" stroke-width="1.3"/><path d="M12.5,4 Q16,8 12.5,12" fill="none" stroke="#1a3d6b" stroke-width="1.3"/></svg>
+                </span>
+            </div>
+        </div>
+        <div class="va-section">
+            <div class="va-label">Volume:</div>
+            <div class="va-volume-row">
+                <input type="range" id="volume-slider" min="0" max="100" value="75" class="va-v-slider" orient="vertical">
+            </div>
+        </div>
+        <label class="va-mute"><input type="checkbox" id="mute-check"> <span>Mute</span></label>
+    </div>
+    <div class="tray-flyout hidden" id="network-flyout">
+        <div class="flyout-title">Local Area Connection</div>
+        <p class="flyout-text">Status: Connected</p>
+        <p class="flyout-sub">Speed: 100.0 Mbps</p>
+    </div>
+
+    <!-- ===== CONTEXT MENU (desktop) ===== -->
+    <div class="context-menu hidden" id="context-menu">
+        <button class="ctx-item ctx-submenu" data-action="arrange">Arrange Icons By <span class="ctx-arrow"></span></button>
+        <button class="ctx-item" data-action="refresh">Refresh</button>
+        <div class="ctx-divider"></div>
+        <button class="ctx-item" data-action="paste" disabled>Paste</button>
+        <button class="ctx-item" data-action="paste-sc" disabled>Paste Shortcut</button>
+        <div class="ctx-divider"></div>
+        <button class="ctx-item ctx-submenu" data-action="new">New <span class="ctx-arrow"></span></button>
+        <div class="ctx-divider"></div>
+        <button class="ctx-item" data-action="properties">Properties</button>
+    </div>
+
+    <!-- ===== CONTEXT MENU (icon) ===== -->
+    <div class="context-menu hidden" id="icon-context-menu">
+        <button class="ctx-item ctx-bold" data-iaction="open">Open</button>
+        <div class="ctx-divider"></div>
+        <button class="ctx-item" data-iaction="cut" disabled>Cut</button>
+        <button class="ctx-item" data-iaction="copy" disabled>Copy</button>
+        <div class="ctx-divider"></div>
+        <button class="ctx-item" data-iaction="shortcut" disabled>Create Shortcut</button>
+        <button class="ctx-item" data-iaction="delete" disabled>Delete</button>
+        <button class="ctx-item" data-iaction="rename" disabled>Rename</button>
+        <div class="ctx-divider"></div>
+        <button class="ctx-item" data-iaction="properties">Properties</button>
+    </div>
+
+    <div class="selection-box hidden" id="selection-box"></div>
+
+    <!-- ===== MESSAGE BOX ===== -->
+    <div class="msgbox-overlay hidden" id="msgbox-overlay">
+        <div class="msgbox" id="msgbox" role="dialog" aria-modal="true">
+            <div class="msgbox-titlebar" id="msgbox-titlebar">
+                <span class="msgbox-title" id="msgbox-title">Biography</span>
+                <button class="win-ctrl close-btn msgbox-x" id="msgbox-x" aria-label="Close">
+                    <span class="ctrl-glyph close-glyph">&#10005;</span>
+                </button>
+            </div>
+            <div class="msgbox-body">
+                <span class="msgbox-icon" aria-hidden="true">
+                    <img class="xpi" src="images/xpicons/Information.png" alt="">
+                </span>
+                <p class="msgbox-text" id="msgbox-text">Тут еще нет функционала, потом добавлю</p>
+            </div>
+            <div class="msgbox-footer">
+                <button class="xp-button msgbox-ok" id="msgbox-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
