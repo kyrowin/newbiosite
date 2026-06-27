@@ -12,6 +12,7 @@ const Sound = (() => {
         error: 'Windows XP Error.mp3',
         recycle: 'Windows XP Recycle.mp3',
         ding: 'Windows XP Ding.mp3',
+        pcStart: 'pcStart.mp3',
     };
 
     const SRC = {};
@@ -20,6 +21,7 @@ const Sound = (() => {
     let masterVolume = 0.75;
     let muted = false;
     let unlocked = false;
+    let powerAudio = null;
 
     function preload() {
         Object.values(SRC).forEach(url => {
@@ -50,8 +52,38 @@ const Sound = (() => {
         preload();
     }
 
+    function powerOn() {
+        if (muted || masterVolume <= 0) return;
+        try {
+            if (powerAudio) { powerAudio.pause(); }
+            powerAudio = new Audio(SRC.pcStart);
+            powerAudio.loop = true;
+            powerAudio.volume = masterVolume;
+            const p = powerAudio.play();
+            if (p && p.catch) p.catch(() => {});
+        } catch (_) {}
+    }
+
+    function powerOnFadeOut(ms) {
+        const a = powerAudio;
+        if (!a) return;
+        powerAudio = null;
+        const dur = ms || 600;
+        const steps = 24;
+        const start = a.volume;
+        let i = 0;
+        const iv = setInterval(() => {
+            i++;
+            a.volume = Math.max(0, start * (1 - i / steps));
+            if (i >= steps) {
+                clearInterval(iv);
+                try { a.pause(); a.currentTime = 0; } catch (_) {}
+            }
+        }, dur / steps);
+    }
+
     return {
-        play, setVolume, getVolume, setMuted, isMuted, unlock, preload,
+        play, setVolume, getVolume, setMuted, isMuted, unlock, preload, powerOn, powerOnFadeOut,
         click: () => play('click'),
         error: () => play('error'),
         startMenu: () => play('start'),
@@ -77,7 +109,7 @@ const Boot = (() => {
     const desktop = () => document.getElementById('desktop');
     const taskbar = () => document.getElementById('taskbar');
 
-    const FADE = 600;
+    const FADE = 0; // abrupt XP-style hard cuts between screens
 
     function show(el) { el.classList.remove('hidden'); }
     function hide(el) { el.classList.add('hidden'); }
@@ -98,42 +130,85 @@ const Boot = (() => {
         }, FADE);
     }
 
-    function animateMemory() {
-        const el = document.getElementById('bios-mem');
+    // Short black pause between stages (screen is black because nothing is shown)
+    function blackGap(ms, cb) { setTimeout(cb, ms); }
+
+    // CRT monitor power-on flash on a screen element
+    function crtFlash(el) {
         if (!el) return;
-        const total = 524288, step = 16384;
+        el.classList.remove('crt-on');
+        void el.offsetWidth; // force reflow to restart the animation
+        el.classList.add('crt-on');
+        setTimeout(() => el.classList.remove('crt-on'), 650);
+    }
+
+    function countMemory(el, cb) {
+        if (!el) { if (cb) cb(); return; }
+        const total = 524288, step = 8192;
         let cur = 0;
         const t = setInterval(() => {
             cur += step;
             if (cur >= total) {
                 clearInterval(t);
                 el.textContent = 'Memory Testing : ' + total + 'K OK';
+                setTimeout(() => { if (cb) cb(); }, 350);
             } else {
                 el.textContent = 'Memory Testing : ' + cur + 'K';
             }
-        }, 45);
+        }, 18);
+    }
+
+    // Reveal POST lines one by one, like a real slow boot
+    function runPost(done) {
+        const screen = biosScreen();
+        screen.classList.add('post-progressive');
+        const items = Array.from(screen.querySelectorAll('.bios-head, .bios-line'));
+        items.forEach(el => el.classList.add('pending'));
+        const memEl = document.getElementById('bios-mem');
+        if (memEl) memEl.textContent = 'Memory Testing : ';
+
+        let idx = 0;
+        function next() {
+            if (idx >= items.length) {
+                setTimeout(() => {
+                    screen.classList.remove('post-progressive');
+                    if (done) done();
+                }, 900);
+                return;
+            }
+            const el = items[idx++];
+            el.classList.remove('pending');
+            if (el.id === 'bios-mem') {
+                countMemory(el, next);
+            } else {
+                setTimeout(next, 210 + Math.random() * 140);
+            }
+        }
+        next();
     }
 
     function bootSequence() {
         const b = bootScreen();
         show(b);
-        fadeIn(b);
         Sound.startup();
         setTimeout(() => {
-            fadeOutHide(b, () => {
+            hide(b);
+            blackGap(700, () => {
                 setBusy(false);
                 show(loginScreen());
-                fadeIn(loginScreen());
             });
-        }, 3500);
+        }, 6000);
     }
 
     function startBoot() {
         setBusy(true);
-        animateMemory();
-        setTimeout(() => {
-            fadeOutHide(biosScreen(), () => { bootSequence(); });
-        }, 3200);
+        const bios = biosScreen();
+        crtFlash(bios);
+        runPost(() => {
+            Sound.powerOnFadeOut(700);
+            hide(bios);
+            blackGap(700, () => bootSequence());
+        });
     }
 
     function login() {
@@ -194,15 +269,14 @@ const Boot = (() => {
         hide(shutdownScreen());
         setBusy(true);
         const bios = biosScreen();
-        // reset memory line for the POST replay
-        const mem = document.getElementById('bios-mem');
-        if (mem) mem.textContent = 'Memory Testing : 524288K OK';
         show(bios);
-        fadeIn(bios);
-        animateMemory();
-        setTimeout(() => {
-            fadeOutHide(bios, () => { bootSequence(); });
-        }, 3000);
+        crtFlash(bios);
+        Sound.powerOn();
+        runPost(() => {
+            Sound.powerOnFadeOut(700);
+            hide(bios);
+            blackGap(700, () => bootSequence());
+        });
     }
 
     function closeAllMenus() {
@@ -766,23 +840,17 @@ const WindowManager = (() => {
     function hide() {
         if (isMaximized) toggleMaximize();
         Sound.windowMinimize();
-        card.classList.add('minimized');
         appBtn.classList.remove('active');
-        card.style.opacity = '0';
-        setTimeout(() => card.classList.add('hidden'), 250);
+        card.classList.add('hidden');
     }
 
     // Close hides the window and its taskbar button without closing the site.
     function closeWindow() {
         if (isMaximized) toggleMaximize();
         Sound.windowMinimize();
-        card.classList.add('minimized');
-        card.style.opacity = '0';
-        setTimeout(() => {
-            card.classList.add('hidden');
-            appBtn.classList.add('hidden');
-            appBtn.classList.remove('active');
-        }, 250);
+        card.classList.add('hidden');
+        appBtn.classList.add('hidden');
+        appBtn.classList.remove('active');
     }
 
     function toggleMaximize() {
@@ -1037,7 +1105,20 @@ function initGlobalEvents() {
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
     initGlobalEvents();
-    Boot.startBoot();
+
+    const powerScreen = document.getElementById('power-screen');
+    const powerBtn = document.getElementById('power-btn');
+    if (powerBtn) {
+        powerBtn.addEventListener('click', () => {
+            Sound.unlock();
+            Sound.powerOn();
+            if (powerScreen) powerScreen.classList.add('hidden');
+            document.getElementById('bios-screen').classList.remove('hidden');
+            Boot.startBoot();
+        }, { once: true });
+    } else {
+        Boot.startBoot();
+    }
 
     let desktopInitialized = false;
     let clockInitialized = false;

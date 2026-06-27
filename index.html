@@ -29,8 +29,19 @@
     <meta name="robots" content="index, follow">
 </head>
 <body>
+    <!-- ===== POWER-ON SCREEN ===== -->
+    <div id="power-screen" class="power-screen">
+        <button id="power-btn" class="power-btn" aria-label="Power on">
+            <svg class="power-glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <path d="M12 3.5 V11" />
+                <path d="M7.2 6.4 a7 7 0 1 0 9.6 0" />
+            </svg>
+        </button>
+        <p class="power-hint">Press the power button</p>
+    </div>
+
     <!-- ===== BIOS POST SCREEN ===== -->
-    <div id="bios-screen" class="bios-screen">
+    <div id="bios-screen" class="bios-screen hidden">
         <div class="bios-head">
             <span class="bios-energy">ENERGY<br>STAR</span>
             <div class="bios-head-text">
@@ -49,7 +60,7 @@
         <p class="bios-line">IDE Channel 1 Master : ASUS DVD-E616A3</p>
         <p class="bios-line">IDE Channel 1 Slave  : None</p>
         <p class="bios-gap"></p>
-        <p class="bios-line">Verifying DMI Pool Data <span class="bios-cursor"></span></p>
+        <p class="bios-line">Verifying DMI Pool Data ....</p>
         <div class="bios-bottom">Press DEL to enter SETUP, F8 for BBS POPUP</div>
         <div class="bios-brand">12/22/2003-SiS-651-6A6IXXXXC-00</div>
     </div>

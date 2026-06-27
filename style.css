@@ -154,6 +154,54 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
 .s075 { --s: 0.75; }
 .s095 { --s: 0.95; }
 
+/* ===== POWER-ON SCREEN (dark case power button) ===== */
+.power-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10002;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+}
+/* single dark matte convex power button */
+.power-btn {
+    width: 98px;
+    height: 64px;
+    border: none;
+    border-radius: 13px;
+    background: radial-gradient(125% 95% at 50% 28%, #4b4e51 0%, #3a3d40 46%, #2b2d2f 100%);
+    color: #1d1f21;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow:
+        inset 0 2px 1px rgba(255,255,255,0.16),
+        inset 0 -5px 9px rgba(0,0,0,0.55),
+        0 3px 6px rgba(0,0,0,0.5);
+}
+.power-btn:hover {
+    background: radial-gradient(125% 95% at 50% 28%, #565a5d 0%, #44474a 46%, #303234 100%);
+}
+.power-btn:active {
+    background: radial-gradient(125% 95% at 50% 30%, #34373a 0%, #2a2c2e 50%, #202224 100%);
+    color: #141618;
+    box-shadow:
+        inset 0 4px 8px rgba(0,0,0,0.7),
+        inset 0 -1px 0 rgba(255,255,255,0.08),
+        0 3px 6px rgba(0,0,0,0.5);
+}
+/* engraved power symbol */
+.power-glyph {
+    display: block;
+    margin-top: 4px;
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.16));
+}
+.power-hint { color: #6a6a6a; font-size: 12px; letter-spacing: 0.3px; }
+
 /* ===== BIOS POST SCREEN ===== */
 .bios-screen {
     position: fixed;
@@ -167,6 +215,25 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
     padding: 26px 34px;
     overflow: hidden;
 }
+/* No mouse pointer on the boot/POST screens (overrides the busy cursor) */
+#bios-screen, #bios-screen *,
+#boot-screen, #boot-screen * { cursor: none !important; }
+
+/* CRT monitor power-on flash */
+.crt-on { animation: crtPowerOn 0.6s ease-out; transform-origin: center center; }
+@keyframes crtPowerOn {
+    0%   { transform: scale(1, 0.004); filter: brightness(3.6); opacity: 0.25; }
+    9%   { transform: scale(1, 0.006); filter: brightness(4.2); opacity: 1; }
+    34%  { transform: scale(1, 0.025); filter: brightness(2.3); }
+    55%  { transform: scale(1, 1);     filter: brightness(2.6); }
+    72%  { filter: brightness(0.65); }
+    100% { transform: scale(1, 1);     filter: brightness(1); opacity: 1; }
+}
+/* progressive POST: lines hidden until JS reveals them */
+.bios-screen.post-progressive .bios-line.pending,
+.bios-screen.post-progressive .bios-head.pending,
+.bios-screen.post-progressive .bios-bottom.pending,
+.bios-screen.post-progressive .bios-brand.pending { visibility: hidden; }
 .bios-screen p { margin: 0; }
 .bios-gap { height: 0.9em; }
 .bios-head {
@@ -187,16 +254,6 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
     letter-spacing: 1px;
     color: #d6d6d6;
 }
-.bios-cursor {
-    display: inline-block;
-    width: 9px;
-    height: 15px;
-    background: #c8c8c8;
-    vertical-align: -2px;
-    margin-left: 3px;
-    animation: biosBlink 1s steps(2, start) infinite;
-}
-@keyframes biosBlink { to { visibility: hidden; } }
 .bios-bottom { position: absolute; left: 34px; bottom: 22px; }
 .bios-brand { position: absolute; right: 34px; bottom: 22px; color: #9a9a9a; }
 
@@ -248,7 +305,7 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
         var(--bar) 0 0 / 9px 100% no-repeat,
         var(--bar) 11px 0 / 9px 100% no-repeat,
         var(--bar) 22px 0 / 9px 100% no-repeat;
-    animation: bootSlide 2s linear infinite;
+    animation: bootSlide 1.5s steps(11, end) infinite;
 }
 @keyframes bootSlide {
     0% { transform: translateX(-34px); }
@@ -400,20 +457,6 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
 .welcome-bar { position: relative; flex: none; height: 84px; overflow: hidden; background: linear-gradient(180deg, #143e8c 0%, #1b4ba3 100%); }
 .welcome-bar-top { box-shadow: 0 2px 0 #6f9ee0; }
 .welcome-bar-bottom { box-shadow: 0 -2px 0 #6f9ee0; }
-.welcome-bar::after {
-    content: "";
-    position: absolute;
-    top: 0; bottom: 0;
-    left: -40%;
-    width: 40%;
-    background: linear-gradient(90deg, transparent, rgba(173,206,255,0.55), transparent);
-    animation: welcomeSweep 2.6s ease-in-out infinite;
-}
-.welcome-bar-bottom::after { animation-direction: reverse; }
-@keyframes welcomeSweep {
-    0% { left: -40%; }
-    60%, 100% { left: 100%; }
-}
 .welcome-center {
     flex: 1;
     display: flex;
@@ -427,7 +470,7 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0,0,0,0.35);
-    animation: welcomePulse 1.4s ease-in-out infinite;
+    animation: welcomePulse 1s steps(2, end) infinite;
 }
 .welcome-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .welcome-text {
@@ -436,12 +479,6 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
     font-size: 34px;
     font-weight: 700;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.45);
-    opacity: 0;
-    animation: welcomeTextIn 0.8s ease 0.15s forwards;
-}
-@keyframes welcomeTextIn {
-    from { opacity: 0; transform: translateX(-12px); }
-    to { opacity: 1; transform: translateX(0); }
 }
 @keyframes welcomePulse {
     0%, 100% { box-shadow: 0 2px 6px rgba(0,0,0,0.35); }
@@ -497,11 +534,9 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
 }
 .shutdown-restart:hover { background: #2a2a2a; color: #fff; }
 
-/* ===== OVERLAY FADE ===== */
-.fade-out { animation: fadeOut 0.6s ease forwards; }
-.fade-in { animation: fadeIn 0.6s ease forwards; }
-@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* ===== SCREEN TRANSITIONS (abrupt, XP-style hard cuts) ===== */
+.fade-out { display: none !important; }
+.fade-in { animation: none; }
 
 /* ===== DESKTOP ===== */
 .desktop {
@@ -624,6 +659,7 @@ input[type="range"], input[type="checkbox"], .va-mute { cursor: url("cursors/arr
 }
 
 .ctrl-glyph { display: block; }
+.ctrl-glyph[hidden] { display: none; }
 .min-glyph { width: 7px; height: 3px; background: #fff; margin-top: 8px; box-shadow: 0 1px 0 rgba(0,0,0,0.3); }
 .max-glyph { width: 10px; height: 9px; border: 1px solid #fff; border-top-width: 2px; box-shadow: 0 1px 0 rgba(0,0,0,0.3); }
 .restore-glyph { position: relative; width: 7px; height: 7px; border: 1px solid #fff; border-top-width: 2px; margin: 3px 0 0 -2px; }
